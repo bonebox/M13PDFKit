@@ -31,7 +31,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.source_files  = 'Classes/**/*.{h,m}'	
   
-  s.ios.resource_bundle         = { 'M13PDFKitResources' => 'Resources/*' }
+  s.resources         = 'Resources/*'
 
   s.frameworks = 'Foundation', 'CoreGraphics', 'ImageIO', 'UIKit'
 

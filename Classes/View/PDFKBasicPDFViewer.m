@@ -287,7 +287,7 @@
         }
         
         //Add list
-        UIBarButtonItem *listItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Thumbs"] landscapeImagePhone:[UIImage imageNamed:@"Thumbs"] style:UIBarButtonItemStylePlain target:self action:@selector(list)];
+        UIBarButtonItem *listItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Thumbs" inBundle:[NSBundle bundleForClass:PDFKBasicPDFViewer.self] compatibleWithTraitCollection:nil] landscapeImagePhone:[UIImage imageNamed:@"Thumbs" inBundle:[NSBundle bundleForClass:PDFKBasicPDFViewer.self] compatibleWithTraitCollection:nil] style:UIBarButtonItemStylePlain target:self action:@selector(list)];
         [buttonsArray addObject:listItem];
         
         //Sharing Button
@@ -311,9 +311,9 @@
             //Add bookmarks
             //Change image based on wether or not the page is bookmarked
             if (![_document.bookmarks containsIndex:_document.currentPage]) {
-                _bookmarkItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Bookmark"] style:UIBarButtonItemStylePlain target:self action:@selector(bookmark)];
+                _bookmarkItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Bookmark" inBundle:[NSBundle bundleForClass:PDFKBasicPDFViewer.self] compatibleWithTraitCollection:nil] style:UIBarButtonItemStylePlain target:self action:@selector(bookmark)];
             } else {
-                _bookmarkItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Bookmarked"] style:UIBarButtonItemStylePlain target:self action:@selector(bookmark)];
+                _bookmarkItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Bookmarked" inBundle:[NSBundle bundleForClass:PDFKBasicPDFViewer.self] compatibleWithTraitCollection:nil] style:UIBarButtonItemStylePlain target:self action:@selector(bookmark)];
             }
             
             [buttonsArray addObject:_bookmarkItem];
@@ -342,7 +342,10 @@
         [buttonsArray addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
         
         //Bookmarks
-        UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[[UIImage imageNamed:@"Thumbs"], [UIImage imageNamed:@"Bookmark"]]];
+        UIImage *thumb = [UIImage imageNamed:@"Thumbs" inBundle:[NSBundle bundleForClass:PDFKBasicPDFViewer.self] compatibleWithTraitCollection:nil];
+        NSLog(@"%@", thumb);
+
+        UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[thumb, [UIImage imageNamed:@"Bookmark" inBundle:[NSBundle bundleForClass:PDFKBasicPDFViewer.self] compatibleWithTraitCollection:nil]]];
         [control setSelectedSegmentIndex:(!_showingBookmarks ? 0 : 1)];
         [control sizeToFit];
         [control addTarget:self action:@selector(toggleShowBookmarks:) forControlEvents:UIControlEventValueChanged];
